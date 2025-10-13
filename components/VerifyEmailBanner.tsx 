@@ -1,0 +1,30 @@
+import React, { useState } from 'react';
+import { View, Text, Button, ActivityIndicator, Alert } from 'react-native';
+import { supabase } from '../lib/supabaseClient';
+
+export default function VerifyEmailBanner({ email }: { email: string }) {
+  const [loading, setLoading] = useState(false);
+
+  const resend = async () => {
+    setLoading(true);
+    try {
+      // Renvoie l'email de vérification (type 'signup')
+      const { error } = await supabase.auth.resend({ type: 'signup', email });
+      if (error) throw error;
+      Alert.alert('Envoyé', "Un e-mail de vérification vient d’être renvoyé.");
+    } catch (e: any) {
+      Alert.alert('Erreur', e?.message ?? "Impossible de renvoyer l’e-mail.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <View style={{ padding: 12, backgroundColor: '#FFF8E1', borderRadius: 8, marginBottom: 12, borderWidth: 1, borderColor: '#FFE082' }}>
+      <Text style={{ marginBottom: 8 }}>
+        Ton e-mail n’est pas encore vérifié. Pense à cliquer sur le lien reçu.
+      </Text>
+      {loading ? <ActivityIndicator/> : <Button title="Renvoyer l’e-mail" onPress={resend} />}
+    </View>
+  );
+}

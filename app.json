@@ -2,19 +2,22 @@
   "expo": {
     "name": "kura-player",
     "slug": "kura-player",
+    "scheme": "kura",  
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+    "userInterfaceStyle": "automatic",
+    
+    
+
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "ios": {
-      "supportsTablet": true
-    },
+    "ios": { "supportsTablet": true },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
@@ -22,8 +25,6 @@
       },
       "edgeToEdgeEnabled": true
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "web": { "favicon": "./assets/favicon.png" }
   }
 }
